@@ -1,4 +1,4 @@
-package com.aahl.hl_letter.Explain;
+﻿package com.aahl.hl_letter.Explain;
 
 /**
  * @author : Mr.Hao
@@ -106,6 +106,24 @@ public class stardard {
      * 2,apkpatch -f app-release1.apk -t app-release.apk -o output -k android_vpclub.keystore -p zte1234$ -a 9225dffc29c07f9f0f04ef1418200038 -e zte1234$
      * 模拟数据到本地进行测试
      * 3,adb push C:\Users\HLL\Desktop\2018AllDownloadCode\AndFix\output\out.apatch /sdcard/
+     */
+
+
+    /**
+     * Git
+     * 打开本地电脑的git bash，git clone url，
+     * 克隆代码到本地，url就是上面Clone or download按钮点开可以看到和复制的地址
+     *
+     * 本地新建一个文件，用来演示代码提交的过程
+     *
+     * git add . 添加文件
+     * git status -s 列出当前目录所有还没有被git管理的文件和被git管理且被修改但还未提交
+     * git commit -m "注释" 提交代码到本地仓库
+     * git push 提交代码到远程git仓库
+     * push完成之后，登录github上可以查看到本地提交到仓库的代码和记录
+     * 输入git pull命令，从远程仓库拉取代码，从提示信息上可以看大在github上面创建的文件，已经被更新到本地代码目录了
+     * ls查看目录
+     *
      */
 
 }
