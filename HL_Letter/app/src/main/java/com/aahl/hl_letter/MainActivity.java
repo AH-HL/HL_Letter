@@ -17,8 +17,6 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends Activity {
 
-    private static final String APATCH_PATH = "/out.apatch"; // 下载下来的apatch的路径
-    private static final String DIR = "apatch";//补丁文件夹
     @BindView(R.id.text)
     TextView mText;
 

@@ -1,13 +1,10 @@
-﻿package com.aahl.hl_letter.Explain;
+package com.aahl.hl_letter.explain;
 
 /**
- * @author : Mr.Hao
- * @project : HL_Letter
- * @date :  2018/4/26
- * @description 开发规范文档--尽量按文档标准有利于开发维护:
+ * Created by Mr.Hao on 2018/5/22
  */
 
-public class stardard {
+public class standard {
 
     /**
      * 一 ,常量命名规范
@@ -103,7 +100,8 @@ public class stardard {
      * 命令行进入到生成patch的目录
      * 1,C:\Users\HLL\Desktop\2018AllDownloadCode\AndFix
      * 生成patch并修改output里面对应的.apatch 的名字
-     * 2,apkpatch -f app-release1.apk -t app-release.apk -o output -k android_vpclub.keystore -p zte1234$ -a 9225dffc29c07f9f0f04ef1418200038 -e zte1234$
+     * 2,apkpatch -f app-release1.apk -t app-release.apk -o output -k android_vpclub.keystore -p
+     * zte1234$ -a 9225dffc29c07f9f0f04ef1418200038 -e zte1234$
      * 模拟数据到本地进行测试
      * 3,adb push C:\Users\HLL\Desktop\2018AllDownloadCode\AndFix\output\out.apatch /sdcard/
      */
