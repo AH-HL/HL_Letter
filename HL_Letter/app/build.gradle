@@ -24,16 +24,20 @@ android {
     signingConfigs {
 
         signConfig {
-            storeFile file("C:/SoftWare/android_vpclub.keystore")//密钥文件路径
-            storePassword "zte1234\$"//密钥文件密码
-            keyAlias "9225dffc29c07f9f0f04ef1418200038"//key别名
-            keyPassword "zte1234\$"//key密码
+            try {
+                storeFile file("C:/SoftWare/android_vpclub.keystore")//密钥文件路径
+                storePassword STORE_PASSWORD //密钥文件密码
+                keyAlias KEY_ALIAS           //key别名
+                keyPassword KEY_PASSWORD     //key密码
+            } catch (ex) {
+                throw new InvalidUserDataException("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
+            }
+
         }
     }
     buildTypes {
         release {
             minifyEnabled false
-//            shrinkResources true
             signingConfig signingConfigs.signConfig
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -50,10 +54,12 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    /*moudle*/
+    implementation project(':sdk-mvp')
+    implementation project(':sdk-rxretrofit')
 
-
-
-
+    //permissions
+    compile "com.tbruyelle.rxpermissions2:rxpermissions:$rootProject.rxPerssionsVersion"
     /*AndFix*/
     compile 'com.alipay.euler:andfix:0.5.0@aar'
     /*butterknife*/

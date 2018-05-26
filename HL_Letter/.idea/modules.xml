@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HL_Letter.iml" filepath="$PROJECT_DIR$/HL_Letter.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sdk-mvp/sdk-mvp.iml" filepath="$PROJECT_DIR$/sdk-mvp/sdk-mvp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sdk-rxretrofit/sdk-rxretrofit.iml" filepath="$PROJECT_DIR$/sdk-rxretrofit/sdk-rxretrofit.iml" />
     </modules>
   </component>
 </project>

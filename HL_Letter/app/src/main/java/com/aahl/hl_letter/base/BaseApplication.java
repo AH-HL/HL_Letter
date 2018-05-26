@@ -24,6 +24,7 @@ public class BaseApplication extends Application {
     private static final String DIR = "apatch";//补丁文件夹
     private static final String TAG = "Application";
     private static PatchManager mPatchManager;
+    private static BaseApplication sInstance;
     protected static Context context;
     protected static Handler handler;
     protected static int mainThreadId;
@@ -31,6 +32,7 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        sInstance = this;
 
         //1）初始化PatchManager
         mPatchManager = new PatchManager(this);
@@ -56,6 +58,12 @@ public class BaseApplication extends Application {
             Log.e(TAG, "", e);
         }
 
+    }
+    /**
+     * 获取instance
+     */
+    public static BaseApplication getInstance() {
+        return sInstance;
     }
 
     /**
