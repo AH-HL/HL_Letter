@@ -51,17 +51,14 @@ public class FlashActivity extends BaseMvpActivitiy<FlashView, FlashPresenter> i
     private boolean mIsOut;
     private int mTime = 3;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //设置自己的Presenter工厂，如果你想自定义的话
         // setPresenterFactory(xxx);
-//        tvCountDown = findViewById(R.id.tv_count_down);
 
     }
-
 
     @Override
     protected int getLayoutId() {
@@ -76,16 +73,17 @@ public class FlashActivity extends BaseMvpActivitiy<FlashView, FlashPresenter> i
         requestPermissions();
     }
 
-
     @Override
     public void requestLoading() {
         showRequestDialog();
     }
 
+
     @Override
     public void resultSuccess(String result) {
         closeRequestDialog();
     }
+
 
     @Override
     public void resultFailure(String result) {
@@ -99,6 +97,9 @@ public class FlashActivity extends BaseMvpActivitiy<FlashView, FlashPresenter> i
         return super.onKeyDown(keyCode, event);
     }
 
+    /**
+     * 运行时权限申请
+     */
     private void requestPermissions() {
         RxPermissions rxPermission = new RxPermissions(FlashActivity.this);
         //请求权限全部结果
@@ -153,6 +154,9 @@ public class FlashActivity extends BaseMvpActivitiy<FlashView, FlashPresenter> i
         //                });
     }
 
+    /**
+     * 启动页倒计时跳转
+     */
     private void initCountDown() {
         Observable<Long> map = Observable.interval(1, TimeUnit.SECONDS).take(4)//计时次数
                 .map(new Function<Long, Long>() {
@@ -197,6 +201,9 @@ public class FlashActivity extends BaseMvpActivitiy<FlashView, FlashPresenter> i
 
     }
 
+    /**
+     * 点击请求天气的接口
+     */
     @OnClick(R.id.ll_skip)
     public void onViewClicked() {
         getMvpPresenter().clickRequest("101010100", this);

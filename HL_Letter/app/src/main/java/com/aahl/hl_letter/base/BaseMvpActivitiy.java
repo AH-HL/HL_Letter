@@ -51,7 +51,7 @@ public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpP
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
-//        fullScreen();
+        fullScreen();
         initView(savedInstanceState);
         initData();
         Log.e("perfect-mvp", "V onCreate");
@@ -145,6 +145,7 @@ public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpP
         isTransAnim = true;
     }
 
+
     /**
      * 初始化view
      * <p>
@@ -154,6 +155,7 @@ public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpP
      */
     protected abstract void initView(Bundle savedInstanceState);
 
+
     /**
      * 获取当前layouty的布局ID,用于设置当前布局
      * <p>
@@ -162,6 +164,7 @@ public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpP
      * @return layout Id
      */
     protected abstract int getLayoutId();
+
 
     /**
      * [页面跳转]
@@ -176,6 +179,7 @@ public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpP
                     .activity_start_zoom_out);
     }
 
+
     /**
      * [页面跳转]
      *
@@ -189,6 +193,7 @@ public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpP
             overridePendingTransition(R.anim.activity_start_zoom_in, R.anim
                     .activity_start_zoom_out);
     }
+
 
     /**
      * [携带数据的页面跳转]
@@ -207,6 +212,7 @@ public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpP
             overridePendingTransition(R.anim.activity_start_zoom_in, R.anim
                     .activity_start_zoom_out);
     }
+
 
     /**
      * [含有Bundle通过Class打开编辑界面]
@@ -236,6 +242,7 @@ public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpP
                     .activity_finish_trans_out);
     }
 
+
     /**
      * 隐藏键盘
      *
@@ -253,12 +260,22 @@ public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpP
                 .getCurrentFocus().getWindowToken(), 0);
     }
 
+
     /**
      * 设置是否使用overridePendingTransition过度动画
      */
     protected void setIsTransAnim(boolean b) {
         isTransAnim = b;
     }
+
+
+    /**
+     * 是否打开沉浸式
+     */
+    protected boolean isFullScreen() {
+        return true;
+    }
+
 
     /**
      * 沉浸式
@@ -273,7 +290,7 @@ public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpP
             // Translucent status bar
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             // Translucent navigation bar
-//            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
+//            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)//特别注意最好不要用
         }
 
         Window win = getWindow();
@@ -291,10 +308,14 @@ public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpP
         }
     }
 
+
     /**
-     * 是否打开沉浸式
+     * 设置状态栏文字的颜色
      */
-    protected boolean isFullScreen() {
-        return true;
+    protected void setStatusBar() {
+        //设置白底黑字
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
     }
 }

@@ -3,13 +3,24 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimary</item><!--标题栏背景-->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item><!--状态栏背景-->
+        <item name="colorAccent">@color/colorAccent</item><!--浮动按钮背景-->
+
+        <!--<item name="android:windowTranslucentStatus">true</item>&lt;!&ndash;侧边栏在状态栏中的状态沉浸&ndash;&gt;-->
+
+
+
     </style>
 
     <style name="FlashTheme" parent="AppTheme">
-        <item name="android:windowBackground">@mipmap/splash</item>
+        <!-- 为 Theme 设置背景图  给人程序启动快的感觉，界面先显示背景图，然后再刷新其他界面控件，刷新不同步。-->
+        <!--<item name="android:windowNoTitle">true</item>-->
+        <!--<item name="android:windowBackground">@mipmap/splash</item>-->
+
+        <!-- 为 Theme 设置透明属性 给人程序启动慢的感觉，界面会一次性刷出来，刷新同步。-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
     <style name="dialog" parent="@android:style/Theme.Dialog">
