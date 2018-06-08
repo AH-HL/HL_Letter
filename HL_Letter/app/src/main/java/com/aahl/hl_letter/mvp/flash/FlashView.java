@@ -18,5 +18,9 @@ public interface FlashView extends BaseMvpView {
     void resultSuccess(String result);
     //请求失败
     void resultFailure(String result);
+    //倒计时数字展示
+    void showJumpTime(String time);
+    //跳转activity
+    void jumpActivity(Class<?> clz);
 
 }

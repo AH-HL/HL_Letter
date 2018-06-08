@@ -11,6 +11,9 @@ import com.alipay.euler.andfix.patch.PatchManager;
 import java.io.File;
 import java.io.IOException;
 
+import me.yokeyword.fragmentation.Fragmentation;
+import me.yokeyword.fragmentation.helper.ExceptionHandler;
+
 /**
  * @author : Mr.Hao
  * @project : HL_Letter
@@ -34,6 +37,9 @@ public class BaseApplication extends Application {
         super.onCreate();
         sInstance = this;
 
+        /**
+         * 阿里AndFix
+         */
         //1）初始化PatchManager
         mPatchManager = new PatchManager(this);
         mPatchManager.init("1.0");
@@ -57,6 +63,27 @@ public class BaseApplication extends Application {
         } catch (IOException e) {
             Log.e(TAG, "", e);
         }
+
+        /**
+         * 初始化栈视图等功能，建议在Application里
+         */
+        Fragmentation.builder()
+                // 设置 栈视图 模式为 （默认）悬浮球模式   SHAKE: 摇一摇唤出  NONE：隐藏， 仅在Debug环境生效
+                .stackViewMode(Fragmentation.SHAKE)
+                .debug(true) // 实际场景建议.debug(BuildConfig.DEBUG)
+                /**
+                 * 可以获取到{@link me.yokeyword.fragmentation.exception.AfterSaveStateTransactionWarning}
+                 * 在遇到After onSaveInstanceState时，不会抛出异常，会回调到下面的ExceptionHandler
+                 */
+                .handleException(new ExceptionHandler() {
+                    @Override
+                    public void onException(Exception e) {
+                        // 以Bugtags为例子: 把捕获到的 Exception 传到 Bugtags 后台。
+                        // Bugtags.sendException(e);
+                    }
+                })
+                .install();
+
 
     }
     /**

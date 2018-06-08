@@ -1,19 +1,21 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item><!--标题栏背景-->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item><!--状态栏背景-->
         <item name="colorAccent">@color/colorAccent</item><!--浮动按钮背景-->
 
-        <!--<item name="android:windowTranslucentStatus">true</item>&lt;!&ndash;侧边栏在状态栏中的状态沉浸&ndash;&gt;-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
-
+    <style name="AppTheme" parent="BaseTheme" >
 
     </style>
 
-    <style name="FlashTheme" parent="AppTheme">
+    <style name="FlashTheme" parent="BaseTheme">
         <!-- 为 Theme 设置背景图  给人程序启动快的感觉，界面先显示背景图，然后再刷新其他界面控件，刷新不同步。-->
         <!--<item name="android:windowNoTitle">true</item>-->
         <!--<item name="android:windowBackground">@mipmap/splash</item>-->

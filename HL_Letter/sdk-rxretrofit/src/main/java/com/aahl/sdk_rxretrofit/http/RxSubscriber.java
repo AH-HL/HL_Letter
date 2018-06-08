@@ -19,13 +19,11 @@ public abstract class RxSubscriber<T> implements Subscriber<T> ,Disposable {
 
     public Subscription mDis ;
 
-
     @Override
     public void onSubscribe(@NonNull Subscription d) {
         mDis = d ;
         d.request(Long.MAX_VALUE);
     }
-
 
     @Override
     public void onError(@NonNull Throwable e) {

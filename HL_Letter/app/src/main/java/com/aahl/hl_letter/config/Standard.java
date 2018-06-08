@@ -1,10 +1,10 @@
-package com.aahl.hl_letter.explain;
+package com.aahl.hl_letter.config;
 
 /**
  * Created by Mr.Hao on 2018/5/22
  */
 
-public class standard {
+public class Standard {
 
     /**
      * 一 ,常量命名规范
@@ -12,16 +12,6 @@ public class standard {
      * 2,中间以"-"连接；
      * 3,望文知意原则；
      * ( 例如：static final int MIN_SCREEN_WIDTH = 4 )
-     */
-
-    /**
-     * 二 ,变量命名规范
-     * 1,首字母小写；
-     * 2,java驼峰命名；
-     * 3,望文知意原则；
-     * 4,推荐引用类型变量添加前缀"m"；
-     * 5,如果是View组件变量,则组件名称为xml文件中定义的ID名称去掉下划线，下划线后一位大写；
-     * ( 例如：static final int mMinScreenWidth = 4 )
      */
 
     /**

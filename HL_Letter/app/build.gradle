@@ -5,7 +5,7 @@ android {
     defaultConfig {
         applicationId "com.aahl.hl_letter"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -51,13 +51,15 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    /*design*/
+    compile 'com.android.support:design:26.1.0'
     /*moudle*/
     implementation project(':sdk-mvp')
     implementation project(':sdk-rxretrofit')
-
+    implementation project(':sdk-utils')
     //permissions
     compile "com.tbruyelle.rxpermissions2:rxpermissions:$rootProject.rxPerssionsVersion"
     /*AndFix*/
@@ -65,4 +67,7 @@ dependencies {
     /*butterknife*/
     implementation "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
     implementation "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+    /*fragmentation*/
+    compile "me.yokeyword:fragmentation:$rootProject.fragmentationVersion"
+
 }

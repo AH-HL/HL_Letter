@@ -1,6 +1,7 @@
 package com.aahl.hl_letter;
 
 
+import com.aahl.hl_letter.model.AppUpDataBean;
 import com.aahl.hl_letter.model.UserQueryBean;
 import com.aahl.hl_letter.model.WeatherBean;
 import com.aahl.hl_letter.remote.HttpResultBean;
@@ -17,6 +18,10 @@ import retrofit2.http.Path;
  * XXX服务器
  */
 public interface ApiSeverse {
+
+    //APP版本信息查询
+    @POST("/moses/app/appVersion/lastVersion")
+    Flowable<HttpResultBean<AppUpDataBean>> lastVersion(@Body RequestBody params);
 
     //用户登录
     @POST("/moses/shop/app/user/login")

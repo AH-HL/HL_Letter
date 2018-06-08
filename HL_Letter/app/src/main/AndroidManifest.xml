@@ -16,6 +16,9 @@
         <activity android:name=".MainActivity">
 
         </activity>
+        <activity android:name=".MainActivityCopy">
+
+        </activity>
         <activity
             android:screenOrientation="portrait"
             android:name=".ui.activity.FlashActivity"

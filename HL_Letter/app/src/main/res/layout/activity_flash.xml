@@ -4,12 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@mipmap/splash"
     android:layout_height="match_parent">
-
-   <!-- <android.support.design.chip.Chip
+<!--
+    <android.support.design.chip
         android:id="@+id/some_chip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:chipText="跳过" />-->
+        app:chipText="跳过" />
+
+    <android.support.design.butt
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MATERIAL BUTTON"
+        android:textSize="18sp"
+        app:icon="@drawable/ic_android_white_24dp" />-->
 
     <LinearLayout
         android:id="@+id/ll_skip"

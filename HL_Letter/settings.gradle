@@ -1,1 +1,1 @@
-include ':app', ':sdk-mvp', ':sdk-rxretrofit'
+include ':app', ':sdk-mvp', ':sdk-rxretrofit', ':sdk-utils'

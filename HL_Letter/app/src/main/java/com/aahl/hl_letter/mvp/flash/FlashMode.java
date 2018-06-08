@@ -1,16 +1,15 @@
 package com.aahl.hl_letter.mvp.flash;
 
 
-import com.aahl.hl_letter.model.UserQueryBean;
+import com.aahl.hl_letter.base.BaseMode;
+import com.aahl.hl_letter.model.AppUpDataBean;
 import com.aahl.hl_letter.remote.HttpResultBean;
 import com.aahl.hl_letter.remote.RequestParam;
 import com.aahl.hl_letter.remote.manager.DataManager;
-import com.aahl.hl_letter.utils.MD5Util;
 import com.aahl.sdk_rxretrofit.http.RxSubscriber;
 import com.aahl.sdk_rxretrofit.params.BaseRequestParams;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.Flowable;
 
 /**
  * @author : Mr.Hao
@@ -19,25 +18,22 @@ import io.reactivex.schedulers.Schedulers;
  * @description : M层 数据层
  */
 
-public class FlashMode {
-    private static final String BASE_URL = "http://devgw.vpclub.cn";
-    private RxSubscriber<HttpResultBean<UserQueryBean>>  callback;
+public class FlashMode<T> extends BaseMode{
 
-    public void request(String detailId, RxSubscriber<HttpResultBean<UserQueryBean>> callback) {
+    private RxSubscriber<HttpResultBean<T>>  callback;
+
+    public void request( RxSubscriber<HttpResultBean<T>> callback) {
         this.callback = callback;
-        //请求接口
+        //请求入参
         BaseRequestParams params = new RequestParam();
-        params.put("loginPhone", "13692169349");//"13266811623" AesResultUtils.getAesResult("")
-        params.put("password", MD5Util.MD532("169349"));
-        params.put("smsCode", "1234");
+        params.put("deviceType", 2);
 
-        DataManager.XsbServ()
-                .login(params.createRequestBody())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(callback);
+        Flowable<HttpResultBean<AppUpDataBean>> httpResultBeanFlowable = DataManager.XsbServ()
+                .lastVersion(params.createRequestBody());
+        request(httpResultBeanFlowable,callback);
 
     }
+
 
     /**
      * 取消网络请求

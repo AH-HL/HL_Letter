@@ -44,6 +44,7 @@ ext {
     supportLibVersion = "27.0.2"
     butterknifeVersion = '8.8.1'
     rxPerssionsVersion = '0.9.4@aar'
+    fragmentationVersion = '1.1.6'
 }
 
 task clean(type: Delete) {

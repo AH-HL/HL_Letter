@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/sdk-mvp" />
             <option value="$PROJECT_DIR$/sdk-rxretrofit" />
+            <option value="$PROJECT_DIR$/sdk-utils" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

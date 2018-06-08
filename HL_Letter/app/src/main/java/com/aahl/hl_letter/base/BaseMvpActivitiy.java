@@ -1,11 +1,11 @@
 package com.aahl.hl_letter.base;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -26,6 +26,10 @@ import com.aahl.sdk_mvp.proxy.BaseMvpProxy;
 import com.aahl.sdk_mvp.proxy.IPresenterProxy;
 import com.aahl.sdk_mvp.view.BaseMvpView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import butterknife.ButterKnife;
 
 
@@ -36,7 +40,7 @@ import butterknife.ButterKnife;
  * @description 继承自Activity的基类MvpActivity
  * 使用代理模式来代理Presenter的创建、销毁、绑定、解绑以及Presenter的状态保存,其实就是管理Presenter的生命周期
  */
-public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpPresenter<V>> extends Activity implements IPresenterProxy<V, P> {
+public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpPresenter<V>> extends BaseActivity implements IPresenterProxy<V, P> {
 
     private static final String PRESENTER_SAVE_KEY = "presenter_save_key";
     protected boolean isTransAnim;
@@ -51,6 +55,9 @@ public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpP
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
+        //注册EventBus
+        EventBus.getDefault().register(this);
+        //沉浸式
         fullScreen();
         initView(savedInstanceState);
         initData();
@@ -74,6 +81,8 @@ public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpP
     protected void onDestroy() {
         super.onDestroy();
         Log.e("perfect-mvp", "V onDestroy = ");
+        //反注册EventBus
+        EventBus.getDefault().unregister(this);
         mProxy.onDestroy();
     }
 
@@ -135,15 +144,15 @@ public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpP
         }
     }
 
+
     /**
-     * 初始化数据
+     * 获取当前layouty的布局ID,用于设置当前布局
      * <p>
-     * 子类可以复写此方法初始化子类数据
+     * 交由子类实现
+     *
+     * @return layout Id
      */
-    protected void initData() {
-        mContext = BaseApplication.getInstance();
-        isTransAnim = true;
-    }
+    protected abstract int getLayoutId();
 
 
     /**
@@ -157,13 +166,14 @@ public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpP
 
 
     /**
-     * 获取当前layouty的布局ID,用于设置当前布局
+     * 初始化数据
      * <p>
-     * 交由子类实现
-     *
-     * @return layout Id
+     * 子类可以复写此方法初始化子类数据
      */
-    protected abstract int getLayoutId();
+    protected void initData() {
+        mContext = BaseApplication.getInstance();
+        isTransAnim = true;
+    }
 
 
     /**
@@ -306,6 +316,21 @@ public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpP
             win.setStatusBarColor(Color.TRANSPARENT);// SDK21
             /*| View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR*/
         }
+
+        /**
+         * 针对部分5.0+手机会出现状态栏是半透明的  ---  处理成透明(有要求是在处理)
+         */
+       /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            // 状态栏字体设置为深色
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            // 部分机型的statusbar会有半透明的黑色背景
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+        }*/
+
     }
 
 
@@ -316,6 +341,17 @@ public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpP
         //设置白底黑字
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(Message msg) {
+        if (msg.what == 100861000) {
+            showRequestDialog();
+        }
+        if (msg.what == 100861001) {
+            closeRequestDialog();
         }
     }
 }
