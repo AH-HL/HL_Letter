@@ -11,7 +11,7 @@ package com.aahl.hl_letter.config;
 
 public final class EventBusConfig {
 
-  public static final int REQUEST_LOADING = 100861000;
-  public static final int REQUEST_LOADING_COLSE = 100861001;
+  public static final int REQUEST_LOADING = 100861000; //网络请求对话框show
+  public static final int REQUEST_LOADING_COLSE = 100861001; //网络请求对话框close
 
 }

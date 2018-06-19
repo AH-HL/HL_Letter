@@ -1,4 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: file('config.gradle')
 
 buildscript {
 
@@ -17,8 +18,8 @@ buildscript {
      * Gradle 的 Android 插件作为 classpath 依赖
      */
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'
+        classpath "com.android.tools.build:gradle:3.0.1"
+        classpath "com.jakewharton:butterknife-gradle-plugin:8.8.1"
         
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -38,14 +39,6 @@ allprojects {
     }
 }
 
-ext {
-    // 如让所有 modules 都使用相同的版本以避免冲突
-    compileSdkVersion = 26
-    supportLibVersion = "27.0.2"
-    butterknifeVersion = '8.8.1'
-    rxPerssionsVersion = '0.9.4@aar'
-    fragmentationVersion = '1.1.6'
-}
 
 task clean(type: Delete) {
     delete rootProject.buildDir

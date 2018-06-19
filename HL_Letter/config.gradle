@@ -1,0 +1,40 @@
+/*主要用于组件化---也可正常使用*/
+/*如让所有 modules 都使用相同的版本以避免冲突*/
+ext {
+
+    /*defaultConfig*/
+    compile_sdk_version = 26
+    min_sdk_version = 16
+    target_sdk_version = 27
+    constraint_version = "1.1.2"
+    android_support_version = "26.1.0"
+    version_code = 101
+    version_name = "1.0.1"
+    multiDexEnabled = true
+
+    /*--- dependencies ---- moudle-app ---*/
+    butterknife_version = '8.8.1'
+    rxPerssions_version = '0.9.5@aar'
+    andfix_version = '0.5.0@aar'
+    fragmentation_version = '1.1.6'
+
+    /*--- dependencies ---- moudle-sdk-utils ---*/
+    eventbus_version = "3.0.0"
+    hawk_version = "+"
+
+    /*--- dependencies ---- moudle-sdk-rxretrofit ---*/
+    rxandroid_version = "2.0.2"
+    rxjava2_version = "+"
+    retrofit_version = "2.4.0"
+    converter_gson_version = "2.3.0"
+    interceptor_version = "3.9.1"
+
+    /*--- dependencies ---- moudle-sdk-mvp ---*/
+
+    /*sign*/
+    STORE_PASSWORD = 'zte1234$'
+    KEY_PASSWORD = 'zte1234$'
+    KEY_ALIAS = '9225dffc29c07f9f0f04ef1418200038'
+
+
+}

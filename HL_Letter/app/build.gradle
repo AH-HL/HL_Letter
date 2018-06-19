@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+
+    compileSdkVersion compile_sdk_version
     defaultConfig {
         applicationId "com.aahl.hl_letter"
-        minSdkVersion 16
-        targetSdkVersion 23
+        minSdkVersion min_sdk_version
+        targetSdkVersion target_sdk_version
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -51,23 +52,27 @@ android {
 }
 
 dependencies {
+
+    /* jar and libs*/
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    /*design*/
-    compile 'com.android.support:design:26.1.0'
     /*moudle*/
     implementation project(':sdk-mvp')
     implementation project(':sdk-rxretrofit')
     implementation project(':sdk-utils')
-    //permissions
-    compile "com.tbruyelle.rxpermissions2:rxpermissions:$rootProject.rxPerssionsVersion"
+    /*appcompat-v7*/
+    implementation "com.android.support:appcompat-v7:$android_support_version"
+    /*design*/
+    compile "com.android.support:design:$android_support_version"
+    /*constraint-layout布局*/
+    implementation "com.android.support.constraint:constraint-layout:$constraint_version"
+    /*permissions*/
+    compile "com.tbruyelle.rxpermissions2:rxpermissions:$rxPerssions_version"
     /*AndFix*/
-    compile 'com.alipay.euler:andfix:0.5.0@aar'
+    compile "com.alipay.euler:andfix:$andfix_version"
     /*butterknife*/
-    implementation "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
-    implementation "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+    implementation "com.jakewharton:butterknife:$butterknife_version"
+    implementation "com.jakewharton:butterknife-compiler:$butterknife_version"
     /*fragmentation*/
-    compile "me.yokeyword:fragmentation:$rootProject.fragmentationVersion"
+    compile "me.yokeyword:fragmentation:$fragmentation_version"
 
 }
