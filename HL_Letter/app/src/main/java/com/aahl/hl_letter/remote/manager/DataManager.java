@@ -46,7 +46,6 @@ public class DataManager
 
     /**
      * 获取接口
-     * @return
      */
     public static ApiSeverse XsbServ(){
         return newInstance().getInterIml(ApiSeverse.class);

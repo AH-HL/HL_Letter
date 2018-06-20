@@ -8,10 +8,12 @@ import com.aahl.sdk_rxretrofit.http.RxSubscriber;
 
 import org.greenrobot.eventbus.EventBus;
 
-
 /**
- * Created by tp on 2016/12/22.
+ * @author : Mr.Hao
+ * @date :  2018/6/19
+ * @description :
  */
+
 
 public abstract class XSubscriber<T>
         extends RxSubscriber<T> {

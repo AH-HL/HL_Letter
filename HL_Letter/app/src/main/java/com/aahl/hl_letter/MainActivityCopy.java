@@ -10,8 +10,7 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * @author : Mr.Hao
- * @project : ${PROJECT_NAME}
- * @date :  ${DATE}
+ * @date :  2018/6/20
  * @description :
  */
 

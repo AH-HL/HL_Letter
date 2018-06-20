@@ -1,5 +1,6 @@
 package com.aahl.hl_letter.helper;
 
+import android.annotation.SuppressLint;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
@@ -8,11 +9,14 @@ import android.util.Log;
 import java.lang.reflect.Field;
 
 /**
- * Created by Horrarndoo on 2017/9/22.
- * <p>
- * BottomNavigationView禁止3个item以上动画切换效果
+ * @author : Mr.Hao
+ * @date :  2018/6/19
+ * @description : BottomNavigationView禁止3个item以上动画切换效果
  */
+
 public class BottomNavigationViewHelper {
+
+    @SuppressLint("RestrictedApi")
     public static void disableShiftMode(BottomNavigationView view) {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
         try {

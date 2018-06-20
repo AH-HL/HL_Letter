@@ -3,8 +3,11 @@ package com.aahl.hl_letter.model;
 import com.aahl.sdk_rxretrofit.bean.BaseBean;
 
 /**
- * Created by tp on 2016/12/21.
+ * @author : Mr.Hao
+ * @date :  2018/6/19
+ * @description :
  */
+
 
 public class AppUpDataBean
         extends BaseBean {

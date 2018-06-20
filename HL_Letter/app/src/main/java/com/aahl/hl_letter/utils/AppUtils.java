@@ -1,5 +1,7 @@
 package com.aahl.hl_letter.utils;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -18,11 +20,13 @@ import com.aahl.hl_letter.base.BaseApplication;
 
 import java.io.File;
 
+
 /**
- * Created by Horrarndoo on 2017/8/31.
- * <p>
- * App工具类
+ * @author : Mr.Hao
+ * @date :  2018/6/19
+ * @description : App相关工具类
  */
+
 public class AppUtils {
 
     /**
@@ -31,7 +35,7 @@ public class AppUtils {
      * @return 上下文对象
      */
     public static Context getContext() {
-        return BaseApplication.getContext();
+        return BaseApplication.getInstance();
     }
 
     /**
@@ -87,10 +91,20 @@ public class AppUtils {
         return versioncode;
     }
 
+    /**
+     * 获取IMEI号
+     */
+    @SuppressLint("HardwareIds")
     public static String getIMEI(Context context) {
-        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context
-                .TELEPHONY_SERVICE);
-        return tm.getDeviceId();
+        try {
+            TelephonyManager tm = (TelephonyManager) context.getSystemService(Activity.TELEPHONY_SERVICE);
+            if (tm != null) {
+                return tm.getDeviceId();
+            }
+        } catch (Exception e) {
+            return "";
+        }
+        return "";
     }
 
     /**
@@ -129,8 +143,6 @@ public class AppUtils {
 
     /**
      * 安装文件
-     *
-     * @param data
      */
     public static void promptInstall(Context context, Uri data) {
         Intent promptInstall = new Intent(Intent.ACTION_VIEW)

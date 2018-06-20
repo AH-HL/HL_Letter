@@ -3,10 +3,10 @@
     package="com.aahl.hl_letter">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
-        android:networkSecurityConfig="@xml/network_security_config"
         android:name=".base.BaseApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"

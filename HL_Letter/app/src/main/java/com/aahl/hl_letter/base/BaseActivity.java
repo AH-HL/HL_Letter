@@ -20,8 +20,6 @@ import me.yokeyword.fragmentation.SupportActivity;
 
 public abstract class BaseActivity extends SupportActivity {
 
-    private static final String TAG = "BaseActivity";
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

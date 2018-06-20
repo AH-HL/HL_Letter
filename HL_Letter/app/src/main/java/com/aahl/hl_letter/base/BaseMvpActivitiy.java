@@ -1,5 +1,6 @@
 package com.aahl.hl_letter.base;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -32,10 +33,8 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 
-
 /**
  * @author : Mr.Hao
- * @project : HLMVP
  * @date :  2017/12/14
  * @description 继承自Activity的基类MvpActivity
  * 使用代理模式来代理Presenter的创建、销毁、绑定、解绑以及Presenter的状态保存,其实就是管理Presenter的生命周期
@@ -119,9 +118,10 @@ public abstract class BaseMvpActivitiy<V extends BaseMvpView, P extends BaseMvpP
     public void showRequestDialog() {
 
         if (mAlertDialog == null) {
+            @SuppressLint("InflateParams")
             View succeedView = LayoutInflater.from(this)
                     .inflate(R.layout.dailog_request, null, false);
-            ImageView ivGif = (ImageView) succeedView.findViewById(R.id.ivGif);
+            ImageView ivGif = succeedView.findViewById(R.id.ivGif);
             Animation ra = AnimationUtils.loadAnimation(this, R.anim.rotate);
             //开始执行动画
             ivGif.startAnimation(ra);

@@ -1,8 +1,11 @@
 package com.aahl.hl_letter.config;
 
 /**
- * Created by Mr.Hao on 2018/5/22
+ * @author : Mr.Hao
+ * @date :  2018/6/19
+ * @description :常用规范(有比较好的可以说明清楚往里面添加并告知相关开发人员)
  */
+
 
 public class Standard {
 

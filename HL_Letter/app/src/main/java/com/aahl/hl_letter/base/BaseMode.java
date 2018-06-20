@@ -4,7 +4,6 @@ package com.aahl.hl_letter.base;
 import android.os.Message;
 
 import com.aahl.hl_letter.config.EventBusConfig;
-import com.aahl.hl_letter.model.UserQueryBean;
 import com.aahl.hl_letter.remote.HttpResultBean;
 import com.aahl.sdk_rxretrofit.http.RxSubscriber;
 
@@ -20,17 +19,16 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author : Mr.Hao
- * @project : HLMVP
  * @date :  2017/12/13
  * @description : M层 数据层
  */
 
 public class BaseMode<T> {
-    private static final String BASE_URL = "http://devgw.vpclub.cn";
-    private RxSubscriber<HttpResultBean<UserQueryBean>>  callback;
 
-    public void request(Flowable<HttpResultBean<T>> flowable, RxSubscriber<HttpResultBean<T>> callback) {
+    private RxSubscriber<HttpResultBean<T>> callback;
 
+    protected void request(Flowable<HttpResultBean<T>> flowable, RxSubscriber<HttpResultBean<T>> callback) {
+        this.callback = callback;
 
         flowable
                 .subscribeOn(Schedulers.io())
@@ -48,7 +46,6 @@ public class BaseMode<T> {
                 .subscribe(callback);
 
     }
-
 
     /**
      * 取消网络请求

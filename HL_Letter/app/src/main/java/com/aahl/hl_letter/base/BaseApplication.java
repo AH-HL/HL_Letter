@@ -1,7 +1,6 @@
 package com.aahl.hl_letter.base;
 
 import android.app.Application;
-import android.content.Context;
 import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
@@ -17,7 +16,6 @@ import me.yokeyword.fragmentation.helper.ExceptionHandler;
 
 /**
  * @author : Mr.Hao
- * @project : HL_Letter
  * @date :  2018/4/27
  * @description :
  */
@@ -27,31 +25,29 @@ public class BaseApplication extends Application {
     private static final String APATCH_PATH = "/out.apatch"; // 下载下来的apatch的路径
     private static final String DIR = "apatch";//补丁文件夹
     private static final String TAG = "Application";
-    private static PatchManager mPatchManager;
-    private static BaseApplication sInstance;
-    protected static Context context;
+    protected static BaseApplication sInstance;
     protected static Handler handler;
     protected static int mainThreadId;
+
 
     @Override
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+        handler = new Handler();
 
-        /**
-         * 阿里AndFix
-         */
+        /**阿里AndFix*/
         //1）初始化PatchManager
-        mPatchManager = new PatchManager(this);
-        mPatchManager.init("1.0");
+        PatchManager patchManager = new PatchManager(this);
+        patchManager.init("1.0");
 
-        mPatchManager.loadPatch();
-        // add patch at runtime
+        patchManager.loadPatch();
+        //2）add patch at runtime
         try {
             // .apatch file path
             String patchFileString = Environment.getExternalStorageDirectory()
                     .getAbsolutePath() + APATCH_PATH;
-            mPatchManager.addPatch(patchFileString);
+            patchManager.addPatch(patchFileString);
             Log.d(TAG, "apatch:" + patchFileString + " added.");
 
             //复制且加载补丁成功后，删除下载的补丁
@@ -65,14 +61,12 @@ public class BaseApplication extends Application {
             Log.e(TAG, "", e);
         }
 
-        /**
-         * 初始化栈视图等功能，建议在Application里
-         */
+        /** fragmentation初始化栈视图等功能，建议在Application里*/
         Fragmentation.builder()
                 // 设置 栈视图 模式为 （默认）悬浮球模式   SHAKE: 摇一摇唤出  NONE：隐藏， 仅在Debug环境生效
                 .stackViewMode(Fragmentation.SHAKE)
                 .debug(BuildConfig.DEBUG) // 实际场景建议.debug(BuildConfig.DEBUG)
-                /**
+                /*
                  * 可以获取到{@link me.yokeyword.fragmentation.exception.AfterSaveStateTransactionWarning}
                  * 在遇到After onSaveInstanceState时，不会抛出异常，会回调到下面的ExceptionHandler
                  */
@@ -87,6 +81,7 @@ public class BaseApplication extends Application {
 
 
     }
+
     /**
      * 获取instance
      */
@@ -94,23 +89,6 @@ public class BaseApplication extends Application {
         return sInstance;
     }
 
-    /**
-     * 获取上下文对象
-     *
-     * @return context
-     */
-    public static PatchManager getPatchManager() {
-        return mPatchManager;
-    }
-
-    /**
-     * 获取上下文对象
-     *
-     * @return context
-     */
-    public static Context getContext() {
-        return context;
-    }
 
     /**
      * 获取全局handler

@@ -12,7 +12,10 @@ import com.aahl.hl_letter.mvp.flash.FlashPresenter;
 import com.aahl.hl_letter.mvp.flash.FlashView;
 import com.aahl.hl_letter.utils.ToastUtil;
 import com.aahl.sdk_mvp.factory.CreatePresenter;
+import com.aahl.sdk_utils.DateUtils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -31,15 +34,10 @@ import io.reactivex.functions.Consumer;
 public class FlashActivity extends BaseMvpActivitiy<FlashView, FlashPresenter> implements
         FlashView {
 
-
-    private static final String TAG = "FlashActivity";
     @BindView(R.id.tv_count_down)
     TextView tvCountDown;
     @BindView(R.id.ll_skip)
     LinearLayout llSkip;
-    private boolean mIsCancle;
-    private boolean mIsOut;
-    private int mTime = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +111,8 @@ public class FlashActivity extends BaseMvpActivitiy<FlashView, FlashPresenter> i
                     ToastUtil.show("App未能获取全部需要的相关权限，部分功能可能不能正常使用.");
                 }
                 //模拟 不管是否获取全部权限，进入主页面
-                getMvpPresenter().initCountDown();
+                /** 模拟网络请求 */
+//                getMvpPresenter().initCountDown();
             }
         });
 
@@ -125,7 +124,27 @@ public class FlashActivity extends BaseMvpActivitiy<FlashView, FlashPresenter> i
      */
     @OnClick(R.id.ll_skip)
     public void onViewClicked() {
-        getMvpPresenter().clickRequest( this);
+
+        /** 模拟网络请求 */
+//        getMvpPresenter().clickRequest();
+
+        /** 获取当前日期 PATTERN_TIME 部分 "HH:mm:ss" */
+        String shortTime = DateUtils.getDayTime();
+
+        /** 获取当前日期 PATTERN_DATE 部分 "yyyy-MM-dd HH:mm:ss" */
+        String Time = DateUtils.getCurDate();
+
+        String shortTime1 = DateUtils.getShortTime(DateUtils.getAllDate());
+
+        /** 获取当前时间起,累计XX天的日期（yyyy-MM-dd）数组 （ 已经转换为我们需要的格式：yyyyMMdd  ）*/
+        List<String> listData = DateUtils.getListData(17);
+
+        /** 获取一天之内的任意整数时段   注意：开始时间要小于结束时间，且在0~23范围内 */
+        List<String> hourList = DateUtils.getHourList(9, 18);
+        List<String> hourList1 = DateUtils.getHourList(11, 20);
+
+        /** Toast唯一工具类 不要乱加别的Toast工具 */
+        ToastUtil.show(shortTime1);
     }
 
 

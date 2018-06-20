@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.aahl.hl_letter.base.BaseMvpActivitiy;
 import com.aahl.hl_letter.helper.BottomNavigationViewHelper;
@@ -20,9 +21,8 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * @author : Mr.Hao
- * @project : ${PROJECT_NAME}
- * @date :  ${DATE}
- * @description :
+ * @date :  2018/6/19
+ * @description : 主要承载页面
  */
 
 @CreatePresenter(RequestPresenter.class)
@@ -33,8 +33,9 @@ public class MainActivity extends BaseMvpActivitiy<RequestView, RequestPresenter
     @BindView(R.id.bottomBar)
     BottomBar mBottomBar;
 
-    // 保存用户按返回键的时间
-    private long mExitTime = 0;
+    // 再点一次退出程序时间设置
+    private static final long WAIT_TIME = 2000L;
+    private long TOUCH_TIME = 0;
     public static final int FIRST = 0;
     public static final int SECOND = 1;
     public static final int THIRD = 2;
@@ -163,5 +164,20 @@ public class MainActivity extends BaseMvpActivitiy<RequestView, RequestPresenter
     public void resultFailure(String result) {
 
     }
+
+    @Override
+    public void onBackPressedSupport() {
+        super.onBackPressedSupport();
+        if (System.currentTimeMillis() - TOUCH_TIME < WAIT_TIME) {
+            finish();
+        } else {
+            TOUCH_TIME = System.currentTimeMillis();
+            Toast.makeText(this, R.string.press_again_exit, Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+
+
 
 }

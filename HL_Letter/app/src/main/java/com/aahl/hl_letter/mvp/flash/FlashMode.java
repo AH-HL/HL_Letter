@@ -13,17 +13,15 @@ import io.reactivex.Flowable;
 
 /**
  * @author : Mr.Hao
- * @project : HLMVP
  * @date :  2017/12/13
  * @description : M层 数据层
  */
 
 public class FlashMode<T> extends BaseMode{
 
-    private RxSubscriber<HttpResultBean<T>>  callback;
 
-    public void request( RxSubscriber<HttpResultBean<T>> callback) {
-        this.callback = callback;
+    public void request(RxSubscriber<HttpResultBean<T>> callback) {
+
         //请求入参
         BaseRequestParams params = new RequestParam();
         params.put("deviceType", 2);
@@ -34,13 +32,4 @@ public class FlashMode<T> extends BaseMode{
 
     }
 
-
-    /**
-     * 取消网络请求
-     */
-    public void interruptHttp() {
-        if (callback != null && !callback.isDisposed()) {
-            callback.dispose();
-        }
-    }
 }

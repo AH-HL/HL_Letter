@@ -88,8 +88,7 @@ public abstract class BaseCompatFragment extends SupportFragment {
     /**
      * 得到Activity传进来的值
      */
-    public void getBundle(Bundle bundle) {
-    }
+    public void getBundle(Bundle bundle) {}
 
     /**
      * 初始化UI

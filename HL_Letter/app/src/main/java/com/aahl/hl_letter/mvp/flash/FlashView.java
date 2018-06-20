@@ -5,7 +5,6 @@ import com.aahl.sdk_mvp.view.BaseMvpView;
 
 /**
  * @author : Mr.Hao
- * @project : HLMVP
  * @date :  2017/12/13
  * @description :
  */

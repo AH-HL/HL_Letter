@@ -1,6 +1,3 @@
-/**
- * Automatically generated file. DO NOT MODIFY
- */
 package com.aahl.hl_letter.config;
 
 /**
@@ -8,6 +5,9 @@ package com.aahl.hl_letter.config;
  * @date :  2018/6/7
  * @description : 所有用到 EventBus 的在这里配置，以10086开头 1000开始顺序排列 （以10086开头的作用当全局查找时不会和系统同名）
  */
+
+
+
 
 public final class EventBusConfig {
 

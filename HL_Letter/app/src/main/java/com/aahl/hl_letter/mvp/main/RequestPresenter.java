@@ -13,7 +13,6 @@ import com.aahl.sdk_rxretrofit.http.RxSubscriber;
 
 /**
  * @author : Mr.Hao
- * @project : HLMVP
  * @date :  2017/12/13
  * @description : P层  特点:需要持有M层和V层
  */
@@ -80,12 +79,6 @@ public class RequestPresenter extends BaseMvpPresenter<RequestView> {
     }
 
 
-    /**
-     * 取消网络请求
-     */
-    public void interruptHttp() {
-        mRequestMode.interruptHttp();
-    }
 
 
 }

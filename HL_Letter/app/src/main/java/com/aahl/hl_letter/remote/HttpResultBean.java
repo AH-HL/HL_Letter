@@ -10,10 +10,11 @@ import com.aahl.sdk_rxretrofit.bean.BaseBean;
 import java.util.Collection;
 
 /**
- * 工程名: hejuhui2.0 文件名: BaseFragment.java 时间 ： 2016年6月12日上午9:29:09 描述 : TODO
- * 
- * @Author mi
+ * @author : Mr.Hao
+ * @date :  2018/6/19
+ * @description :
  */
+
 public class HttpResultBean<T> extends BaseBean {
 	public int returnCode ;
 	public String message ="网络异常!";
@@ -54,7 +55,7 @@ public class HttpResultBean<T> extends BaseBean {
 	public boolean isSuccess() {
 		if (returnCode == 1000) {
 			return true;
-		}else
+		}
 		return false;
 	}
 	

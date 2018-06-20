@@ -17,10 +17,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.aahl.hl_letter.R;
 
-
 /**
- * Created by YoKeyword on 16/6/3.
+ * @author : Mr.Hao
+ * @date :  2018/6/20
+ * @description :
  */
+
 public class BottomBarTab extends FrameLayout {
     private ImageView mIcon;
     private TextView mTvTitle;

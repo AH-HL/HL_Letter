@@ -1,6 +1,5 @@
 package com.aahl.hl_letter.mvp.flash;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,7 +25,6 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author : Mr.Hao
- * @project : HLMVP
  * @date :  2017/12/13
  * @description : P层  特点:需要持有M层和V层
  */
@@ -46,7 +44,7 @@ public class FlashPresenter extends BaseMvpPresenter<FlashView> {
     /**
      * 模拟点击请求
      */
-    public void clickRequest(final Context context) {
+    public void clickRequest() {
 
         mFlashMode.request(new XSubscriber<HttpResultBean<UserQueryBean>>() {
             @Override
@@ -151,7 +149,7 @@ public class FlashPresenter extends BaseMvpPresenter<FlashView> {
     /**
      * 取消网络请求
      */
-    public void interruptHttp() {
+    private void interruptHttp() {
         mFlashMode.interruptHttp();
     }
 

@@ -77,7 +77,6 @@ public class BridgeWebView extends WebView implements VpJsBridge {
 
     /**
      * 获取到CallBackFunction data执行调用并且从数据集移除
-     * @param url
      */
 	void handlerReturnData(String url) {
 		String functionName = BridgeUtil.getFunctionFromReturnUrl(url);
@@ -240,8 +239,6 @@ public class BridgeWebView extends WebView implements VpJsBridge {
 	
 	/**
 	 * unregister handler
-	 * 
-	 * @param handlerName
 	 */
 	public void unregisterHandler(String handlerName) {
 		if (handlerName != null) {

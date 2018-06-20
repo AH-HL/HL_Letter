@@ -10,15 +10,12 @@ import android.view.WindowManager;
 
 import com.aahl.hl_letter.base.BaseApplication;
 
-
 /**
- * 工程名 ： BaiLan
- * 包名   ： com.example.ggxiaozhi.store.the_basket.utils
- * 作者名 ： 志先生_
- * 日期   ： 2017/8/23
- * 时间   ： 11:58
- * 功能   ： 界面相关的工具类
+ * @author : Mr.Hao
+ * @date :  2018/6/19
+ * @description : 界面相关的工具类
  */
+
 
 public class UIUtils {
 
@@ -55,13 +52,13 @@ public class UIUtils {
         return BaseApplication.getInstance();
     }
 
-    /** pxz转换dip */
-
+    /** px转换dip */
     public static int px2dip(int px) {
         final float scale = getContext().getResources().getDisplayMetrics().density;
         return (int) (px / scale + 0.5f);
     }
 
+    /** 获取Resources */
     public static Resources getResources() {
         return getContext().getResources();
     }
@@ -71,7 +68,7 @@ public class UIUtils {
         return getResources().getStringArray(id);
     }
 
-    /** 获取颜色id */
+    /** 根据id获取颜色color */
     public static int getColor(int colorId) {
         return getResources().getColor(colorId);
     }
@@ -81,40 +78,43 @@ public class UIUtils {
         return getResources().getDimensionPixelSize(id);
     }
 
+    /** 获取view的id */
     public static View inflate(int id) {
         return View.inflate(getContext(), id, null);
     }
 
+    /** 根据id获取资源文件里面的String */
+    public static String getString(int id) {
+        return getResources().getString(id);
+    }
+
+    /** 根据id获取资源文件里面的Drawable */
+    public static Drawable getDrawable(int id) {
+        return getResources().getDrawable(id);
+    }
+
+
     /**
-     * 在主线程中执行代码
-     *
-     * @param runnable
+     * 获取全局handler
      */
+    private static Handler getHandler() {
+        return BaseApplication.getHandler();
+    }
 
-
-
-
-    /** 移除一个执行的对象 */
+    /**
+     * handler移除一个执行的对象
+     */
     public static void removeCallBacks(Runnable r) {
         getHandler().removeCallbacks(r);
     }
 
-    /** 延迟执行 */
+    /**
+     * handler延迟执行
+     */
     public static void postDelay(Runnable runnable, long delay) {
         Handler handler = getHandler();
         handler.postDelayed(runnable, delay);
     }
 
-    private static Handler getHandler() {
-        return BaseApplication.getHandler();
-    }
 
-
-
-    public static String getString(int id) {
-        return getResources().getString(id);
-    }
-    public static Drawable getDrawable(int id) {
-        return getResources().getDrawable(id);
-    }
 }
