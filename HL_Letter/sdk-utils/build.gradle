@@ -32,8 +32,20 @@ android {
 }
 
 dependencies {
+
+    /*appcompat-v7*/
+    implementation "com.android.support:appcompat-v7:$android_support_version"
     /*eventbus*/
     compile "org.greenrobot:eventbus:$eventbus_version"
     /*hawk*/
     compile "com.orhanobut:hawk:$hawk_version"
+    /*AndFix*/
+    compile "com.alipay.euler:andfix:$andfix_version"
+    /*fragmentation*/
+    compile "me.yokeyword:fragmentation:$fragmentation_version"
+    /*glide*/
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    /*transformations*/
+    implementation "jp.wasabeef:glide-transformations:$transformations_version"
+
 }

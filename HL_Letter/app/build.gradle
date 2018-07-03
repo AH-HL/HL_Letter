@@ -60,19 +60,17 @@ dependencies {
     implementation project(':sdk-rxretrofit')
     implementation project(':sdk-utils')
     /*appcompat-v7*/
-    implementation "com.android.support:appcompat-v7:$android_support_version"
+//    implementation "com.android.support:appcompat-v7:$android_support_version"
     /*design*/
     compile "com.android.support:design:$android_support_version"
     /*constraint-layout布局*/
     implementation "com.android.support.constraint:constraint-layout:$constraint_version"
     /*permissions*/
     compile "com.tbruyelle.rxpermissions2:rxpermissions:$rxPerssions_version"
-    /*AndFix*/
-    compile "com.alipay.euler:andfix:$andfix_version"
     /*butterknife*/
     implementation "com.jakewharton:butterknife:$butterknife_version"
     implementation "com.jakewharton:butterknife-compiler:$butterknife_version"
-    /*fragmentation*/
-    compile "me.yokeyword:fragmentation:$fragmentation_version"
+
+
 
 }

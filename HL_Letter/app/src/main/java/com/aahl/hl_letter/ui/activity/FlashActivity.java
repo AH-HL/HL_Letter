@@ -3,6 +3,7 @@ package com.aahl.hl_letter.ui.activity;
 import android.Manifest;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -12,23 +13,19 @@ import com.aahl.hl_letter.mvp.flash.FlashPresenter;
 import com.aahl.hl_letter.mvp.flash.FlashView;
 import com.aahl.hl_letter.utils.ToastUtil;
 import com.aahl.sdk_mvp.factory.CreatePresenter;
-import com.aahl.sdk_utils.DateUtils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.functions.Consumer;
 
 /**
- * 工程名 : HLMVP
- * 包名  :  com.zxvp.hlmvp
- * 作者名 : 好郝先生
- * 日期  :  2017/12/11
- * 邮箱  :  anhuihaoliang@163.com
- * 功能  :
+ * @author : Mr.Hao
+ * @date :  2018/7/3
+ * @description :
  */
+
+
 //声明需要创建的Presenter
 @CreatePresenter(FlashPresenter.class)
 public class FlashActivity extends BaseMvpActivitiy<FlashView, FlashPresenter> implements
@@ -38,6 +35,8 @@ public class FlashActivity extends BaseMvpActivitiy<FlashView, FlashPresenter> i
     TextView tvCountDown;
     @BindView(R.id.ll_skip)
     LinearLayout llSkip;
+    @BindView(R.id.test)
+    ImageView mTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +111,7 @@ public class FlashActivity extends BaseMvpActivitiy<FlashView, FlashPresenter> i
                 }
                 //模拟 不管是否获取全部权限，进入主页面
                 /** 模拟网络请求 */
-//                getMvpPresenter().initCountDown();
+                getMvpPresenter().initCountDown();
             }
         });
 
@@ -126,25 +125,46 @@ public class FlashActivity extends BaseMvpActivitiy<FlashView, FlashPresenter> i
     public void onViewClicked() {
 
         /** 模拟网络请求 */
-//        getMvpPresenter().clickRequest();
+        getMvpPresenter().clickRequest();
 
-        /** 获取当前日期 PATTERN_TIME 部分 "HH:mm:ss" */
+
+
+        /*
+
+        *//** 获取当前日期 PATTERN_TIME 部分 "HH:mm:ss" *//*
         String shortTime = DateUtils.getDayTime();
 
-        /** 获取当前日期 PATTERN_DATE 部分 "yyyy-MM-dd HH:mm:ss" */
+        *//** 获取当前日期 PATTERN_DATE 部分 "yyyy-MM-dd HH:mm:ss" *//*
         String Time = DateUtils.getCurDate();
 
         String shortTime1 = DateUtils.getShortTime(DateUtils.getAllDate());
 
-        /** 获取当前时间起,累计XX天的日期（yyyy-MM-dd）数组 （ 已经转换为我们需要的格式：yyyyMMdd  ）*/
+        *//** 获取当前时间起,累计XX天的日期（yyyy-MM-dd）数组 （ 已经转换为我们需要的格式：yyyyMMdd  ）*//*
         List<String> listData = DateUtils.getListData(17);
 
-        /** 获取一天之内的任意整数时段   注意：开始时间要小于结束时间，且在0~23范围内 */
+        *//** 获取一天之内的任意整数时段   注意：开始时间要小于结束时间，且在0~23范围内 *//*
         List<String> hourList = DateUtils.getHourList(9, 18);
         List<String> hourList1 = DateUtils.getHourList(11, 20);
 
-        /** Toast唯一工具类 不要乱加别的Toast工具 */
+        *//** Toast唯一工具类 不要乱加别的Toast工具 *//*
         ToastUtil.show(shortTime1);
+
+        *//** 显示资源虚化图片 *//*
+        DisplayUtils.displayBlurImg(this, R.mipmap.ic_launcher,mTest);
+
+
+
+        DatePickerDialogFragment datePickerDialogFragment = new DatePickerDialogFragment();
+        datePickerDialogFragment.setOnDateChooseListener(new DatePickerDialogFragment.OnDateChooseListener() {
+            @Override
+            public void onDateChoose(String one, String two, String three) {
+                Toast.makeText(getApplicationContext(), one + "-" + two + "-" + three, Toast.LENGTH_SHORT).show();
+            }
+        });
+        datePickerDialogFragment.show(getSupportFragmentManager(), "DatePickerDialogFragment");
+
+        */
+
     }
 
 

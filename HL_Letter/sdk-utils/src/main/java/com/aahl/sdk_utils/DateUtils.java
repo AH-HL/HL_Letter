@@ -71,7 +71,7 @@ public class DateUtils {
     }
 
     /**
-     * 获取当前日期 PATTERN_DATE 部分 "yyyy-MM-dd HH:mm:ss"
+     * 获取当前日期 PATTERN_DATE 部分 "yyyy-MM-dd "
      */
     public static String getCurDate() {
         Date curDate = new Date();
@@ -79,7 +79,7 @@ public class DateUtils {
     }
 
     /**
-     * 获取当前日期 PATTERN_DATE 部分 "yyyy-MM-dd"
+     * 获取当前日期 PATTERN_DATE 部分 "yyyy-MM-dd HH:mm:ss"
      */
     public static String getAllDate() {
         @SuppressLint("SimpleDateFormat")

@@ -7,4 +7,10 @@
 
     <color name="tab_unselect">#c9c9c9</color>
     <color name="bg_btn">#dadada</color>
+
+    <color name="bg_white">@android:color/white</color>
+    <color name="color_0084CF">#0084CF</color>
+
+    <color name="com_ycuwq_datepicker_selectedTextColor">#33aaff</color>
+    <color name="com_ycuwq_datepicker_divider">#cccccc</color>
 </resources>

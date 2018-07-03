@@ -11,6 +11,7 @@ ext {
     version_code = 101
     version_name = "1.0.1"
     multiDexEnabled = true
+    fragmentation_debug = false
 
     /*--- dependencies ---- moudle-app ---*/
     butterknife_version = '8.8.1'
@@ -21,6 +22,8 @@ ext {
     /*--- dependencies ---- moudle-sdk-utils ---*/
     eventbus_version = "3.0.0"
     hawk_version = "+"
+    glide_version = "3.7.0"
+    transformations_version = "2.0.1"
 
     /*--- dependencies ---- moudle-sdk-rxretrofit ---*/
     rxandroid_version = "2.0.2"

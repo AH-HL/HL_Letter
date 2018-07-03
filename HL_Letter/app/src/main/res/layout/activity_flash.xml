@@ -51,4 +51,10 @@
     </LinearLayout>
 
 
+    <ImageView
+        android:id="@+id/test"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_100" />
+
+
 </RelativeLayout>

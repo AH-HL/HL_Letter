@@ -2,6 +2,9 @@
     <string name="app_name">HL_Letter</string>
     <string name="press_again_exit">再按一次退出</string>
 
+    <string name="dialog_positive">确定</string>
+    <string name="dialog_negative">取消</string>
+
 
 
 
