@@ -9,7 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class BridgeUtil {
-	final static String YY_OVERRIDE_SCHEMA = "yy://";
+	final static String YY_OVERRIDE_SCHEMA = "vpclub://";
 	final static String YY_RETURN_DATA = YY_OVERRIDE_SCHEMA + "return/";//格式为   yy://return/{function}/returncontent
 	final static String YY_FETCH_QUEUE = YY_RETURN_DATA + "_fetchQueue/";
 	final static String EMPTY_STR = "";
@@ -17,13 +17,13 @@ public class BridgeUtil {
 	final static String SPLIT_MARK = "/";
 	
 	final static String CALLBACK_ID_FORMAT = "JAVA_CB_%s";
-	final static String JS_HANDLE_MESSAGE_FROM_JAVA = "javascript:VpJsBridge._handleMessageFromNative('%s');";
-	final static String JS_FETCH_QUEUE_FROM_JAVA = "javascript:VpJsBridge._fetchQueue();";
+	final static String JS_HANDLE_MESSAGE_FROM_JAVA = "javascript:LvUJsBridge._handleMessageFromNative('%s');";
+	final static String JS_FETCH_QUEUE_FROM_JAVA = "javascript:LvUJsBridge._fetchQueue();";
 	public final static String JAVASCRIPT_STR = "javascript:";
 
-	// 例子 javascript:VpJsBridge._fetchQueue(); --> _fetchQueue
+	// 例子 javascript:LvUJsBridge._fetchQueue(); --> _fetchQueue
 	public static String parseFunctionName(String jsUrl){
-		return jsUrl.replace("javascript:VpJsBridge.", "").replaceAll("\\(.*\\);", "");
+		return jsUrl.replace("javascript:LvUJsBridge.", "").replaceAll("\\(.*\\);", "");
 	}
 
 	// 获取到传递信息的body值
@@ -77,7 +77,7 @@ public class BridgeUtil {
 	}
 
 	/**
-	 * 这里只是加载lib包中assets中的 VpJsBridge.js
+	 * 这里只是加载lib包中assets中的 LvUJsBridge.js
 	 * @param view webview
 	 * @param path 路径
 	 */

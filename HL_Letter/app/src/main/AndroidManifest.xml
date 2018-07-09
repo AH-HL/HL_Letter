@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".MainActivityCopy">
 
+        </activity> <activity android:name=".webview.WebViewActivity">
+
         </activity>
         <activity
             android:screenOrientation="portrait"

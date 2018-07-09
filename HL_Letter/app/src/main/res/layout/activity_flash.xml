@@ -55,6 +55,12 @@
         android:id="@+id/test"
         android:layout_width="@dimen/dp_100"
         android:layout_height="@dimen/dp_100" />
+    <com.aahl.hl_letter.jsbridge.BridgeWebView
+        android:visibility="gone"
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never" />
 
 
 </RelativeLayout>

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.aahl.hl_letter.R;
 import com.aahl.hl_letter.base.BaseMvpActivitiy;
+import com.aahl.hl_letter.jsbridge.BridgeWebView;
 import com.aahl.hl_letter.mvp.flash.FlashPresenter;
 import com.aahl.hl_letter.mvp.flash.FlashView;
 import com.aahl.hl_letter.utils.ToastUtil;
@@ -37,6 +38,10 @@ public class FlashActivity extends BaseMvpActivitiy<FlashView, FlashPresenter> i
     LinearLayout llSkip;
     @BindView(R.id.test)
     ImageView mTest;
+    @BindView(R.id.webview)
+    BridgeWebView mWebview;
+
+    private String url = "http://ymr-h5.vpclub.cn/html/index.html#/home";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,7 @@ public class FlashActivity extends BaseMvpActivitiy<FlashView, FlashPresenter> i
 
         //注：魅族pro6s-7.0-flyme6权限没有像类似6.0以上手机一样正常的提示dialog获取运行时权限，而是直接默认给了权限
         requestPermissions();
+        mWebview.loadUrl(url);
     }
 
     @Override
@@ -153,7 +159,6 @@ public class FlashActivity extends BaseMvpActivitiy<FlashView, FlashPresenter> i
         DisplayUtils.displayBlurImg(this, R.mipmap.ic_launcher,mTest);
 
 
-
         DatePickerDialogFragment datePickerDialogFragment = new DatePickerDialogFragment();
         datePickerDialogFragment.setOnDateChooseListener(new DatePickerDialogFragment.OnDateChooseListener() {
             @Override
@@ -163,7 +168,10 @@ public class FlashActivity extends BaseMvpActivitiy<FlashView, FlashPresenter> i
         });
         datePickerDialogFragment.show(getSupportFragmentManager(), "DatePickerDialogFragment");
 
+
+
         */
+
 
     }
 

@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.webkit.ConsoleMessage;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
@@ -15,25 +16,81 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.aahl.hl_letter.R;
+import com.aahl.hl_letter.jsbridge.BridgeHandler;
+import com.aahl.hl_letter.jsbridge.BridgeWebView;
+import com.aahl.hl_letter.jsbridge.CallBackFunction;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Mr.Hao on 2018/5/9
  */
 public class WebViewActivity extends AppCompatActivity {
 
+    @BindView(R.id.webview)
+    BridgeWebView mWebview;
+
+    private String url = "http://ymr-h5.vpclub.cn/html/index.html#/home";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_webview);
+        ButterKnife.bind(this);
         initView();
     }
 
+
     private void initView() {
         initListener();
+
+        // 禁止 file 协议加载 JavaScript
+        if (url.startsWith("file://")) {//用子类的url（此处是防止报错）
+            mWebview.getSettings().setJavaScriptEnabled(false);
+        } else {// 设置是否允许 WebView 使用 JavaScript（默认是不允许）
+            mWebview.getSettings().setJavaScriptEnabled(true);
+        }
+        registerJsBridge();
+        mWebview.loadUrl(url);
+
+//        // Android版本变量
+//        final int version = Build.VERSION.SDK_INT;
+//        // 因为该方法在 Android 4.4 版本才可使用，所以使用时需进行版本判断
+//        if (version < Build.VERSION_CODES.KITKAT) {
+//            mWebview.loadUrl(url);
+//        } else {
+//            mWebview.evaluateJavascript(url, new ValueCallback<String>() {
+//                @Override
+//                public void onReceiveValue(String s) {
+//                    //此处为 js 返回的结果
+//                }
+//            });
+//
+//        }
     }
 
+
+    /**
+     * js桥
+     */
+    private void registerJsBridge() {
+        mWebview.registerHandler("scanQR", new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+                Log.i("TEST", "===========");
+                CallBackFunction function1 = function;
+//                autoObtainCameraPermission();
+            }
+        });
+    }
+
+
     private void initListener() {
-//        mWebView.setWebViewClient(new SafeWebViewClient());
-//        mWebView.setWebChromeClient(new SafeWebChromeClient());
+//        mWebview.setWebViewClient(new SafeWebViewClient());
+        mWebview.setWebChromeClient(new SafeWebChromeClient());
+
     }
 
     public class SafeWebViewClient extends WebViewClient {
@@ -58,6 +115,7 @@ public class WebViewActivity extends AppCompatActivity {
             view.loadUrl(url);
             return true;
         }
+
 
         /**
          * WebView 开始加载页面时回调，一次Frame加载对应一次回调

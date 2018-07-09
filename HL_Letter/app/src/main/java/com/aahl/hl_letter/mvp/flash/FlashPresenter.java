@@ -5,10 +5,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.aahl.hl_letter.MainActivity;
 import com.aahl.hl_letter.model.UserQueryBean;
 import com.aahl.hl_letter.remote.HttpResultBean;
 import com.aahl.hl_letter.remote.XSubscriber;
+import com.aahl.hl_letter.webview.WebViewActivity;
 import com.aahl.sdk_mvp.presenter.BaseMvpPresenter;
 
 import java.util.concurrent.TimeUnit;
@@ -51,7 +51,7 @@ public class FlashPresenter extends BaseMvpPresenter<FlashView> {
             public void onNext(HttpResultBean<UserQueryBean> userQueryBeanHttpResultBean) {
                 super.onNext(userQueryBeanHttpResultBean);
                 mIsOut = true;
-                getMvpView().jumpActivity(MainActivity.class);
+                getMvpView().jumpActivity(WebViewActivity.class);
             }
 
 
@@ -115,7 +115,7 @@ public class FlashPresenter extends BaseMvpPresenter<FlashView> {
             @Override
             public void onComplete() {
                 if (mIsCancle) {
-                    getMvpView().jumpActivity(MainActivity.class);
+                    getMvpView().jumpActivity(WebViewActivity.class);
                     interruptHttp();
                 }
             }

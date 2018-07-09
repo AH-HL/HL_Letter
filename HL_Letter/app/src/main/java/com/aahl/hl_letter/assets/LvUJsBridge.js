@@ -2,7 +2,7 @@
 //since comments will cause error when use in webview.loadurl,
 //comments will be remove by java use regexp
 (function() {
-    if (window.WebViewJavascriptBridge) {
+    if (window.LvUJsBridge) {
         return;
     }
 
@@ -11,7 +11,7 @@
     var receiveMessageQueue = [];
     var messageHandlers = {};
 
-    var CUSTOM_PROTOCOL_SCHEME = 'yy';
+    var CUSTOM_PROTOCOL_SCHEME = 'vpclub';
     var QUEUE_HAS_MESSAGE = '__QUEUE_MESSAGE__/';
 
     var responseCallbacks = {};
@@ -26,10 +26,10 @@
 
     //set default messageHandler  初始化默认的消息线程
     function init(messageHandler) {
-        if (WebViewJavascriptBridge._messageHandler) {
-            throw new Error('WebViewJavascriptBridge.init called twice');
+        if (LvUJsBridge._messageHandler) {
+            throw new Error('LvUJsBridge.init called twice');
         }
-        WebViewJavascriptBridge._messageHandler = messageHandler;
+        LvUJsBridge._messageHandler = messageHandler;
         var receivedMessages = receiveMessageQueue;
         receiveMessageQueue = null;
         for (var i = 0; i < receivedMessages.length; i++) {
@@ -101,7 +101,7 @@
                     };
                 }
 
-                var handler = WebViewJavascriptBridge._messageHandler;
+                var handler = LvUJsBridge._messageHandler;
                 if (message.handlerName) {
                     handler = messageHandlers[message.handlerName];
                 }
@@ -110,7 +110,7 @@
                     handler(message.data, responseCallback);
                 } catch (exception) {
                     if (typeof console != 'undefined') {
-                        console.log("WebViewJavascriptBridge: WARNING: javascript handler threw.", message, exception);
+                        console.log("LvUJsBridge: WARNING: javascript handler threw.", message, exception);
                     }
                 }
             }
@@ -127,7 +127,7 @@
        
     }
 
-    var WebViewJavascriptBridge = window.WebViewJavascriptBridge = {
+    var LvUJsBridge = window.LvUJsBridge = {
         init: init,
         send: send,
         registerHandler: registerHandler,
@@ -139,7 +139,7 @@
     var doc = document;
     _createQueueReadyIframe(doc);
     var readyEvent = doc.createEvent('Events');
-    readyEvent.initEvent('WebViewJavascriptBridgeReady');
-    readyEvent.bridge = WebViewJavascriptBridge;
+    readyEvent.initEvent('LvUJsBridgeReady');
+    readyEvent.bridge = LvUJsBridge;
     doc.dispatchEvent(readyEvent);
 })();

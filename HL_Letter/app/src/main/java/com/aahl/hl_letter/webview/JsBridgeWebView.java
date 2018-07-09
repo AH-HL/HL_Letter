@@ -33,7 +33,9 @@ public class JsBridgeWebView extends WebView {
 
     /**
      * 移除系统注入的对象，避免js漏洞
-     * <p>
+     * 在Android 3.0以下，Android系统会默认通过searchBoxJavaBridge_ ,accessibility ,accessibilityTraversal的Js接口
+     * 给 WebView 添加一个JS映射对象：searchBoxJavaBridge_对象
+     *
      * https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-1939
      * https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-7224
      */
