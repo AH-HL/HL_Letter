@@ -1,13 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aahl" >
-
     <!--android:name属性——是用来设置所有activity属于哪个application的，默认是android.app.Application。-->
     <application
         android:name=".UtilsApplication"
         android:allowBackup="true"
         android:label="模拟组件化"
-        android:supportsRtl="true">
-
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
 
     </application>
 </manifest>

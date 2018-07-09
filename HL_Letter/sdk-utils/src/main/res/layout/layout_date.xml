@@ -10,7 +10,7 @@
 
     <com.aahl.data.OnePicker
         android:id="@+id/picker_one"
-        app:wheelCyclic="false"
+        app:wheelCyclic="true"
         app:halfVisibleItemCount="2"
         app:indicatorTextSize="12sp"
         android:layout_weight="1"
@@ -19,7 +19,7 @@
 
     <com.aahl.data.TwoPicker
         android:id="@+id/picker_two"
-        app:wheelCyclic="false"
+        app:wheelCyclic="true"
         app:indicatorTextSize="12sp"
         app:halfVisibleItemCount="2"
         android:layout_weight="1"
